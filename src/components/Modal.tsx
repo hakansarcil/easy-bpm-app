@@ -13,7 +13,7 @@ interface ModalProps {
 export function Modal({ isOpen, onClose, title, children }: ModalProps) {
   return (
     <Transition.Root show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={onClose}>
+      <Dialog as="div" className="relative z-40" onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -26,7 +26,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-50 w-screen overflow-y-auto">
+        <div className="fixed inset-0 z-40 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -39,7 +39,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
             >
               <Dialog.Panel
                 className={cn(
-                  "relative transform overflow-hidden rounded-lg bg-white",
+                  "relative transform overflow-visible rounded-lg bg-white",
                   "px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
                 )}
               >
@@ -64,7 +64,9 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
                     {title}
                   </Dialog.Title>
                 )}
-                {children}
+                <div className="relative">
+                  {children}
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
